@@ -1,0 +1,32 @@
+# Violation Detection
+
+Criteria:
+- Sri Lankan LV tolerance: ±6%
+- Node voltages monitored per phase
+
+Algorithm:
+1. Simulate 24 hours
+2. Capture voltage per node per minute
+3. Flag nodes exceeding thresholds
+4. Produce violation map
+
+Outputs:
+- Violating nodes
+- Violating hours
+- Worst-case phases
+
+# Mitigation Strategies
+
+## Reactive Power Control (Inverters)
+- PF adjustment
+- Absorption to counteract rising voltage
+
+## Network Balancing
+- Phase reallocation
+- Equal load sharing
+
+## Conductor Upgrades
+- Lower R/X → Reduced drop/rise
+
+## Transformer Tap Optimization
+Tap changer set to 3/4 based on simulation outcomes.

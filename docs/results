@@ -1,0 +1,11 @@
+# Results
+
+## Observations
+- Violations occur under high solar injection
+- Phase imbalance amplifies deviations
+- Reverse power flow is dominant cause
+
+## Improvements
+- Correction using PF improved voltages
+- Tap change lowered overall feeder voltage
+- Rebalancing reduced unbalanced loading

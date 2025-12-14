@@ -1,0 +1,11 @@
+# Limitations and Future Work
+
+## Limitations
+- Static line parameters
+- No real-time SCADA data
+- Simplified inverter model
+
+## Future Work
+- Include dynamics of smart inverters
+- Add probabilistic variation of households
+- Combine with AMI/SCADA data
