@@ -19,7 +19,7 @@ cfg.load.avg_kW = 3.5;
 cfg.load.pf     = 0.9;
 cfg.pv.pf_fixed = 0.95;
 
-%++++++++++++++++++++++++load assumptions+++++++++++++++++++++++++++++++
+% load assumptions
 
 % Service type ratios (BY COUNT)
 cfg.load.ratio_1ph_30A = 0.60;
@@ -34,7 +34,7 @@ cfg.load.kW_3ph_60A = 9.0;
 cfg.load.pf_1ph = 0.90;
 cfg.load.pf_3ph = 0.92;
 
-%++++++++++++++++++++++++solar assumptions++++++++++++++++++++++++++++++
+% solar assumptions
 
 % Inverter size distribution (BY COUNT)
 cfg.solar.inv_sizes_kW  = [5 10 15 20 40];
@@ -50,7 +50,7 @@ cfg.solar.target_1ph_kW_ratio = 0.55;
 % Electrical behaviour
 cfg.solar.pf_fixed = 0.95;
 
-% --- Solar penetration (BY SERVICE COUNT) ---
+% Solar penetration
 cfg.solar.penetration_ratio = 0.70;   % 70% of services have PV
 
 

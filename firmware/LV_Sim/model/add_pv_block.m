@@ -19,7 +19,6 @@ blkName = sprintf('PV_%s', strrep(node, '-', '_'));
 blk = blkName;  % Return just the block name, not full path
 
 % Model PV as negative load (generator)
-% This is a standard approach in distribution system analysis
 try
     add_block('powerlib/Elements/Three-Phase Dynamic Load', [model '/' blkName], ...
         'Position',[x y x+80 y+60]);
@@ -37,8 +36,6 @@ pf = cfg.solar.pf_fixed;
 Q = P * tan(acos(pf));
 
 % Set parameters: negative active power for generation
-% NominalVoltage: [Vn(Vrms) fn(Hz)]
-% ActiveReactivePowers: [Po(W) Qo(var)]
 set_param([model '/' blkName], ...
     'NominalVoltage', sprintf('[%g %g]', cfg.V_ln_nom, cfg.f_nom), ...
     'ActiveReactivePowers', sprintf('[%g %g]', -P, -Q));  % Negative = generation

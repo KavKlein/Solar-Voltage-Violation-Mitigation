@@ -45,7 +45,7 @@ loadTable = table( ...
     poleID, loadTypes, loadkVA, loadkW, loadPhase, ...
     'VariableNames', {'PoleID','Type','kVA','kW','Phase'});
 
-% === SOLAR GENERATION - FIX THE BUG ===
+% SOLAR GENERATION
 nSolarSites = round(net.total_services * cfg.solar.penetration_ratio);
 
 % Pre-allocate ALL arrays with correct size
@@ -85,18 +85,12 @@ fprintf('Debug: length(solarPhase) = %d\n', length(solarPhase));
 solarTable = table( ...
     solarPoleID, invSizes, solarType, solarPhase, ...
     'VariableNames', {'PoleID','kW','Type','Phase'});
-
-%% ================= DISPLAY =================
+%outputs
 disp('LOAD DISTRIBUTION (kW)')
 disp(groupsummary(loadTable,'Type','sum','kW'))
 
 disp('SOLAR DISTRIBUTION (kW)')
 disp(groupsummary(solarTable,'Type','sum','kW'))
-
-% Create outputs folder if it doesn't exist
-if ~exist('outputs', 'dir')
-    mkdir('outputs');
-end
 
 writetable(loadTable,  'outputs/load_assignment.csv');
 writetable(solarTable, 'outputs/solar_assignment.csv');

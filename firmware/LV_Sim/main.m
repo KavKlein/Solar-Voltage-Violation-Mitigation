@@ -19,8 +19,7 @@ net = read_network_data('data/LV_Network_Data.xlsx');
 
 [loadTable, solarTable] = generate_connections(net, cfg);
 
-% FIX: Pass cond parameter to build_model
-% cond is loaded inside build_model
+% FIX: Pass conductor parameter to build_model
 build_model(modelName, net, cfg, loadTable, solarTable);
 
 run_daily_sim(modelName, cfg);

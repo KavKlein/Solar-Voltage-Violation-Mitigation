@@ -12,7 +12,7 @@ if isempty(svc) || height(svc) == 0
 end
 
 blkName = sprintf('Load_%s', strrep(node, '-', '_'));  % Replace dashes for valid block name
-blk = blkName;  % Return just the block name, not full path
+blk = blkName; 
 
 add_block('powerlib/Elements/Three-Phase Dynamic Load', [model '/' blkName], ...
     'Position',[x y x+80 y+60]);
@@ -22,9 +22,6 @@ P = sum(svc.kW) * 1e3;  % W
 pf = cfg.load.pf;
 Q = P * tan(acos(pf));  % var
 
-% Set parameters according to the dialog structure
-% NominalVoltage: [Vn(Vrms) fn(Hz)]
-% ActiveReactivePowers: [Po(W) Qo(var)]
 set_param([model '/' blkName], ...
     'NominalVoltage', sprintf('[%g %g]', cfg.V_ln_nom, cfg.f_nom), ...
     'ActiveReactivePowers', sprintf('[%g %g]', P, Q));

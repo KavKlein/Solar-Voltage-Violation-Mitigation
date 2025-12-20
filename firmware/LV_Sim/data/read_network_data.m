@@ -13,7 +13,7 @@ fprintf('Loaded %d valid network segments\n', height(T));
 
 net.segments = T;
 
-% --- Build pole table ---
+% Build pole table
 svcCol = T.('ServicesatPole');
 
 svcCol = fillmissing(svcCol,'constant',0);

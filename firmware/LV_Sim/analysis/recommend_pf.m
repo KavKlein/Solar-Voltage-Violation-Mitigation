@@ -5,7 +5,7 @@ if isempty(results)
     return
 end
 
-% Conservative utility-grade recommendation
+%industry standard setting
 pf = 0.95;
 
 end

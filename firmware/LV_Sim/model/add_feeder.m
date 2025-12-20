@@ -1,6 +1,5 @@
 function add_feeder(model, fd, cfg, cond, loadTable, solarTable, x0, y0)
 
-% Debug: show what we're working with
 fprintf('Processing feeder with %d segments\n', height(fd));
 
 % Start from transformer secondary
@@ -10,7 +9,6 @@ prevPort = 'LConn2';  % Left connection port 2 (LV side)
 x = x0;
 y = y0;
 
-% fd is already a filtered table of segments for this feeder
 for k = 1:height(fd)
     
     % Access table row properly with correct column names
@@ -33,14 +31,11 @@ for k = 1:height(fd)
     nodeName = strrep(nodeName, '\', '_');
     nodeName = strrep(nodeName, ' ', '_');
 
-    %% --- PI LINE ---
+    %% PI LINE
     blkLine = [model '/' lineName];
     add_block('powerlib/Elements/Three-Phase PI Section Line', blkLine,...
         'Position',[x y x+100 y+80]);
 
-    % Extract conductor type properly
-    % Excel has: "70ABC", "50ABC", etc.
-    % Library expects: "ABC70", "ABC50", etc.
     condType = conductor;
     condType = strrep(condType, ' ', '');   % Remove spaces
     condType = strrep(condType, '-', '');   % Remove dashes
@@ -75,7 +70,7 @@ for k = 1:height(fd)
         'Inductances', mat2str(cond.(condType).l),...
         'Capacitances', mat2str(cond.(condType).c));
 
-    %% --- CONNECT LINE TO PREVIOUS NODE ---
+    %% CONNECT LINE TO PREVIOUS NODE
     if k == 1
         % First segment connects to transformer
         add_line(model, [prev '/' prevPort], [lineName '/LConn1'], 'autorouting','on');
@@ -84,24 +79,24 @@ for k = 1:height(fd)
         add_line(model, [prev '/RConn2'], [lineName '/LConn1'], 'autorouting','on');
     end
 
-    %% --- ADD LOADS ---
+    %% ADD LOADS
     [loadBlk, hasLoad] = add_load_block(model, toPole, loadTable, cfg, x+150, y);
     if hasLoad
         fprintf('    Added load: %s\n', loadBlk);
     end
     
-    %% --- ADD PV ---
+    %% ADD PV
     [pvBlk, hasPV] = add_pv_block(model, toPole, solarTable, cfg, x+150, y+100);
     if hasPV
         fprintf('    Added PV: %s\n', pvBlk);
     end
 
-    %% --- ADD VOLTAGE MEASUREMENT ---
-    vmBlk = add_voltage_measurement(model, nodeName, x+150, y-80);
-    fprintf('    Added VM: %s\n', vmBlk);
+    %% ADD VOLTAGE MEASUREMENT
+    
+    % vmBlk = add_voltage_measurement(model, nodeName, x+150, y-80);
+    % fprintf('    Added VM: %s\n', vmBlk);
 
-    %% --- CONNECT LOADS/PV/VM TO LINE ---
-    % All connect to the right side of the PI line (RConn2)
+    %% CONNECT LOADS/PV/VM TO LINE 
     % Use block names without model prefix
     lineBlkShort = strrep(lineName, [model '/'], '');
     
@@ -112,12 +107,6 @@ for k = 1:height(fd)
     if hasPV
         add_line(model, [lineBlkShort '/RConn2'], [pvBlk '/LConn1'], 'autorouting','on');
     end
-    
-    % Voltage measurement - connect positive terminal to line, negative to ground
-    % First, connect positive terminal
-    add_line(model, [lineBlkShort '/RConn2'], [vmBlk '/LConn1'], 'autorouting','on');
-    % Connect negative terminal to ground
-    add_line(model, 'Ground/LConn1', [vmBlk '/LConn2'], 'autorouting','on');
 
     % Update previous node for next iteration
     prev = lineName;
