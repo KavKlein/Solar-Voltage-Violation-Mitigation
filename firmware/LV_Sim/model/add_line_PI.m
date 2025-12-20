@@ -6,6 +6,7 @@ add_block('powerlib/Elements/Three-Phase PI Section Line', blk,...
     'Position',pos);
 
 l_km = span_m/1000;
+condType = ['ABC' extractAfter(seg.Conductor,'ABC')];
 c = cond.(condType);
 
 set_param(blk,...

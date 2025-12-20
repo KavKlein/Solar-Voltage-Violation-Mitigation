@@ -1,13 +1,27 @@
 clear; clc;
 
 cfg = system_config();
-cond = conductor_library();
 
 modelName = 'LV_Distribution_Network';
+
+% Check if model exists and close/delete it
+if bdIsLoaded(modelName)
+    close_system(modelName, 0);
+end
+if exist([modelName '.slx'], 'file')
+    delete([modelName '.slx']);
+end
+
 new_system(modelName);
 open_system(modelName);
 
-build_model(modelName, cfg, cond);
+net = read_network_data('data/LV_Network_Data.xlsx');
+
+[loadTable, solarTable] = generate_connections(net, cfg);
+
+% FIX: Pass cond parameter to build_model
+% cond is loaded inside build_model
+build_model(modelName, net, cfg, loadTable, solarTable);
 
 run_daily_sim(modelName, cfg);
 

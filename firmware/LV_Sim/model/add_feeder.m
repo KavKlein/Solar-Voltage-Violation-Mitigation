@@ -1,51 +1,127 @@
-function add_feeder(model, fd, cfg, cond, x0, y0)
+function add_feeder(model, fd, cfg, cond, loadTable, solarTable, x0, y0)
 
-prev = [model '/LV_BUS'];
+% Debug: show what we're working with
+fprintf('Processing feeder with %d segments\n', height(fd));
+
+% Start from transformer secondary
+prev = 'Transformer';
+prevPort = 'LConn2';  % Left connection port 2 (LV side)
 
 x = x0;
 y = y0;
 
-for k = 1:length(fd.segments)
+% fd is already a filtered table of segments for this feeder
+for k = 1:height(fd)
+    
+    % Access table row properly with correct column names
+    fromPole = fd.FromPole{k};
+    toPole = fd.ToPole{k};
+    len_m = fd.Span_m(k);  % Correct column name from Excel
+    conductor = fd.Conductor{k};
+    feederName = fd.Feeder{k};
 
-    seg = fd.segments(k);
-
-    node = sprintf('%s_%s', fd.name, seg.to);
-    line = sprintf('%s_L%d', fd.name, k);
+    % Create unique names for this segment (after sanitization)
+    lineName = sprintf('%s_Line_%s_%s', feederName, fromPole, toPole);
+    nodeName = sprintf('%s_Node_%s', feederName, toPole);
+    
+    % Additional sanitization for line and node names
+    lineName = strrep(lineName, '/', '_');
+    lineName = strrep(lineName, '\', '_');
+    lineName = strrep(lineName, ' ', '_');
+    
+    nodeName = strrep(nodeName, '/', '_');
+    nodeName = strrep(nodeName, '\', '_');
+    nodeName = strrep(nodeName, ' ', '_');
 
     %% --- PI LINE ---
-    blkLine = [model '/' line];
+    blkLine = [model '/' lineName];
     add_block('powerlib/Elements/Three-Phase PI Section Line', blkLine,...
-        'Position',[x y x+80 y+60]);
+        'Position',[x y x+100 y+80]);
 
+    % Extract conductor type properly
+    % Excel has: "70ABC", "50ABC", etc.
+    % Library expects: "ABC70", "ABC50", etc.
+    condType = conductor;
+    condType = strrep(condType, ' ', '');   % Remove spaces
+    condType = strrep(condType, '-', '');   % Remove dashes
+    condType = strrep(condType, '_', '');   % Remove underscores
+    
+    % If format is "70ABC" or "50ABC", convert to "ABC70", "ABC50"
+    if contains(condType, 'ABC')
+        % Extract the number
+        numPart = regexp(condType, '\d+', 'match');
+        if ~isempty(numPart)
+            condType = ['ABC' numPart{1}];
+        else
+            % No number found, default to ABC70
+            condType = 'ABC70';
+        end
+    else
+        % Doesn't contain ABC at all
+        condType = 'ABC70';
+    end
+    
+    % Check if conductor type exists in library
+    if ~isfield(cond, condType)
+        warning('Conductor type %s not found, using ABC70 as default', condType);
+        condType = 'ABC70';
+    end
+    
+    % Set parameters with correct names
     set_param(blkLine,...
-        'Length', num2str(seg.len_m/1000),...
-        'Resistance', mat2str(cond.(seg.cond).R),...
-        'Inductance', mat2str(cond.(seg.cond).L),...
-        'Capacitance', mat2str(cond.(seg.cond).C));
+        'Frequency', '50',...
+        'Length', num2str(len_m/1000),...
+        'Resistances', mat2str(cond.(condType).r),...
+        'Inductances', mat2str(cond.(condType).l),...
+        'Capacitances', mat2str(cond.(condType).c));
 
-    %% --- NODE BUS ---
-    blkBus = [model '/' node];
-    add_block('powerlib/Elements/Three-Phase Busbar', blkBus,...
-        'Position',[x+120 y x+150 y+60]);
-
-    %% --- CONNECT LINE ---
-    add_line(model,[get_param(prev,'Name') '/1'],[line '/1'],'autorouting','on');
-    add_line(model,[line '/2'],[node '/1'],'autorouting','on');
-
-    %% --- LOAD ---
-    if seg.nsvc > 0
-        add_load_block(model, node, seg, cfg, x+200, y);
+    %% --- CONNECT LINE TO PREVIOUS NODE ---
+    if k == 1
+        % First segment connects to transformer
+        add_line(model, [prev '/' prevPort], [lineName '/LConn1'], 'autorouting','on');
+    else
+        % Subsequent segments connect to previous line output
+        add_line(model, [prev '/RConn2'], [lineName '/LConn1'], 'autorouting','on');
     end
 
-    %% --- SOLAR PV ---
-    if isfield(seg,'has_pv') && seg.has_pv
-        add_pv_block(model, node, seg, cfg, x+200, y+80);
+    %% --- ADD LOADS ---
+    [loadBlk, hasLoad] = add_load_block(model, toPole, loadTable, cfg, x+150, y);
+    if hasLoad
+        fprintf('    Added load: %s\n', loadBlk);
+    end
+    
+    %% --- ADD PV ---
+    [pvBlk, hasPV] = add_pv_block(model, toPole, solarTable, cfg, x+150, y+100);
+    if hasPV
+        fprintf('    Added PV: %s\n', pvBlk);
     end
 
-    %% --- VOLTAGE MEASUREMENT ---
-    add_voltage_measurement(model, node, x+200, y-60);
+    %% --- ADD VOLTAGE MEASUREMENT ---
+    vmBlk = add_voltage_measurement(model, nodeName, x+150, y-80);
+    fprintf('    Added VM: %s\n', vmBlk);
 
-    prev = blkBus;
-    x = x + 300;
+    %% --- CONNECT LOADS/PV/VM TO LINE ---
+    % All connect to the right side of the PI line (RConn2)
+    % Use block names without model prefix
+    lineBlkShort = strrep(lineName, [model '/'], '');
+    
+    if hasLoad
+        add_line(model, [lineBlkShort '/RConn2'], [loadBlk '/LConn1'], 'autorouting','on');
+    end
+    
+    if hasPV
+        add_line(model, [lineBlkShort '/RConn2'], [pvBlk '/LConn1'], 'autorouting','on');
+    end
+    
+    % Voltage measurement - connect positive terminal to line, negative to ground
+    % First, connect positive terminal
+    add_line(model, [lineBlkShort '/RConn2'], [vmBlk '/LConn1'], 'autorouting','on');
+    % Connect negative terminal to ground
+    add_line(model, 'Ground/LConn1', [vmBlk '/LConn2'], 'autorouting','on');
+
+    % Update previous node for next iteration
+    prev = lineName;
+    x = x + 350;
 end
+
 end

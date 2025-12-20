@@ -1,18 +1,44 @@
-function build_model(modelName, cfg, cond)
+function build_model(modelName, net, cfg, loadTable, solarTable)
 
-add_block('powerlib/powergui',[modelName '/powergui'],'Position',[30 30 120 80]);
+% Get conductor library
+cond = conductor_library();
 
+% Powergui (required for power system simulation)
+add_block('powerlib/powergui', ...
+    [modelName '/powergui'], ...
+    'Position',[30 30 120 80]);
+
+% Transformer
 add_transformer(modelName, cfg);
 
-data = readtable('data/LV_Network_Data.xlsx');
+% Add a ground at transformer secondary
+blkGnd = [modelName '/Ground'];
+add_block('powerlib/Elements/Ground', blkGnd, ...
+    'Position',[350 280 370 300]);
 
-feeders = unique(data.Feeder);
+% Connect ground to transformer neutral
+add_line(modelName, 'Transformer/RConn2', 'Ground/LConn1', 'autorouting', 'on');
 
-x0 = 300; y0 = 200;
+% Feeders
+feeders = unique(net.segments.Feeder);
 
-for f = 1:length(feeders)
-    fd = data(strcmp(data.Feeder,feeders{f}),:);
-    add_feeder(modelName, fd, cfg, cond, x0, y0+300*(f-1));
+x0 = 400;
+y0 = 150;
+
+for f = 1:numel(feeders)
+    % Filter segments by feeder name
+    fd = net.segments(strcmp(net.segments.Feeder, feeders{f}), :);
+
+    % Pass the filtered table directly
+    add_feeder( ...
+        modelName, ...
+        fd, ...
+        cfg, ...
+        cond, ...
+        loadTable, ...
+        solarTable, ...
+        x0, ...
+        y0 + 400*(f-1));
 end
 
 end
