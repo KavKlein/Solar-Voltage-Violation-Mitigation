@@ -126,12 +126,14 @@ fprintf('  Diversified Load: %.1f kW\n', diversified_demand);
 fprintf('  Solar Capacity:   %.1f kW\n', currentSolarTotal);
 fprintf('  Solar/Load Ratio: %.1f%%\n', (currentSolarTotal/diversified_demand)*100);
 
-% Save outputs
-if ~exist('outputs', 'dir')
-    mkdir('outputs');
+% Save outputs - create directory if needed
+outputDir = fullfile(pwd, 'outputs');
+if ~exist(outputDir, 'dir')
+    mkdir(outputDir);
 end
-writetable(loadTable, 'outputs/load_assignment.csv');
-writetable(solarTable, 'outputs/solar_assignment.csv');
+
+writetable(loadTable, fullfile(outputDir, 'load_assignment.csv'));
+writetable(solarTable, fullfile(outputDir, 'solar_assignment.csv'));
 
 end
 

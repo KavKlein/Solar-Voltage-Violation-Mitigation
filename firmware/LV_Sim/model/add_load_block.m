@@ -23,24 +23,23 @@ end
 
 % CRITICAL FIX: Use Three-Phase Parallel RLC Load instead
 % This block supports unbalanced operation better than Dynamic Load
-add_block('powerlib/Elements/Three-Phase Parallel RLC Load', [model '/' blkName], ...
-    'Position',[x y x+80 y+60]);
+add_block('ee_lib/Passive/Constant Power Load (Three-Phase)', ...
+    [model '/' blkName], ...
+    'Position',[x y x+90 y+60]);
+
 
 % Calculate total load - UNITY POWER FACTOR
-P_total = sum(svc.MaxDemand_kW) * 1e3;  % Total watts
-pf = cfg.load.pf;  % Should be 1.0
+P = sum(svc.MaxDemand_kW) * 1e3;  % Total watts
 
 % For unity PF (resistive), we just need active power
 % Three-Phase Parallel RLC Load uses per-phase power ratings
 
 % Set parameters - use constant impedance model (most stable)
 set_param([model '/' blkName], ...
-    'NominalVoltage', num2str(cfg.V_ln_nom), ...
-    'NominalFrequency', num2str(cfg.f_nom), ...
-    'ActivePower', num2str(P_total/3), ...  % Divide by 3 for per-phase
-    'InductivePower', '0', ...              % Unity PF
-    'CapacitivePower', '0', ...
-    'LoadType', 'constant Z');
+    'LoadType', 'constant Z', ...
+    'Vline_rms_ini', num2str(cfg.V_ln_nom*sqrt(3,3)), ...
+    'FRated', num2str(cfg.f_nom), ...
+    'active_power', num2str(P/3));  % Per phase
 
 hasLoad = true;
 

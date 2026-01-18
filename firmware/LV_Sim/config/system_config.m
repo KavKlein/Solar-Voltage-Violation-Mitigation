@@ -6,6 +6,16 @@ cfg.V_ln_nom = 230;             % V (line-to-neutral)
 cfg.V_ll_nom = 400;             % V (line-to-line)
 cfg.voltage_limits = [0.94 1.06]; % ±6%
 
+% ==================== FEEDER ====================
+cfg.fdr.gmr = 5;
+cfg.fdr.srad = 10;
+cfg.fdr.cablerad = 415;
+cfg.tf.connection = 'Dyn11';
+cfg.tf.Z_pu = 0.0414;
+cfg.tf.XR = 5;
+cfg.tf.tap_positions = [-5 -2.5 0 2.5 5]; % %
+cfg.tf.tap_index = 3; % 0% (nominal)
+
 % ==================== TRANSFORMER ====================
 cfg.tf.rating_kVA = 160;
 cfg.tf.V_HV = 11e3;

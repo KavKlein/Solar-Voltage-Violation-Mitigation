@@ -25,28 +25,21 @@ if ~isempty(find_system(model, 'SearchDepth', 1, 'Name', blkName))
     return;
 end
 
-% BEST SOLUTION: Use Three-Phase Dynamic Load for PV (as before)
-% But loads now use RLC Load (impedance model) so no conflict
-try
-    add_block('powerlib/Elements/Three-Phase Dynamic Load', [model '/' blkName], ...
-        'Position',[x y x+80 y+60]);
-catch ME
-    warning('Failed to add PV block for node %s: %s', node, ME.message);
-    hasPV = false;
-    return;
-end
+add_block('ee_lib/Sources/Controlled Current Source (Three-Phase)', ...
+    [model '/' blkName], ...
+    'Position',[x y x+100 y+60]);
 
-P_total = sum(pv.kW) * 1e3;  % W
-pf = cfg.solar.pf_fixed;  % 0.95 inverter PF
+P = sum(pv.kW)*1e3;
+Q = P*tan(acos(cfg.solar.pf_fixed));
 
-% For generator (negative load), calculate reactive power
-Q_total = P_total * tan(acos(pf));
+% Calculate voltage and current for constant power injection
+% Voltage matches grid, current adjusted for power
+V_source = cfg.V_ln_nom;  % Match grid voltage
 
-% Set parameters: NEGATIVE active power = generation
+% Set as constant PQ source (inverter behavior)
 set_param([model '/' blkName], ...
-    'NominalVoltage', sprintf('[%g %g]', cfg.V_ln_nom, cfg.f_nom), ...
-    'ActiveReactivePowers', sprintf('[%g %g]', -P_total, -Q_total), ...
-    'NpNq', '[1 0]');
+    'input_option', 'Sinusoidal magnitude and phase shift', ...
+    'FRated', num2str(cfg.f_nom));  % Inverter absorbs reactive
 
 hasPV = true;
 

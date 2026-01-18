@@ -1,11 +1,21 @@
-function add_feeder(model, fd, cfg, cond, loadTable, solarTable, x0, y0)
+function add_feeder(model, fd, cfg, loadTable, solarTable, x0, y0)
 
 % Debug: show what we're working with
 fprintf('Processing feeder with %d segments\n', height(fd));
 
-% Start from transformer secondary
 prev = 'Transformer';
-prevPort = 'LConn2';  % Left connection port 2 (LV side)
+prevPort = 'RConn2'; 
+
+% Start from transformer secondary - no busbar needed
+% Feeders branch directly from transformer output
+%if k == 1
+    % First segment connects directly to transformer
+%    prev = 'Transformer';
+%    prevPort = 'RConn2';  % Transformer secondary output
+%else
+%    prev = lineName;  % Will be set from previous iteration
+%    prevPort = 'RConn2';
+%end
 
 x = x0;
 y = y0;
@@ -33,9 +43,11 @@ for k = 1:height(fd)
     nodeName = strrep(nodeName, '\', '_');
     nodeName = strrep(nodeName, ' ', '_');
 
+    
+
     %% --- PI LINE ---
     blkLine = [model '/' lineName];
-    add_block('powerlib/Elements/Three-Phase PI Section Line', blkLine,...
+    add_block('ee_lib/Passive/Lines/AC Cable (Three-Phase)', blkLine,...
         'Position',[x y x+100 y+80]);
 
     % Extract conductor type properly
@@ -61,30 +73,26 @@ for k = 1:height(fd)
         condType = 'ABC70';
     end
     
-    % Check if conductor type exists in library
-    if ~isfield(cond, condType)
-        warning('Conductor type %s not found, using ABC70 as default', condType);
-        condType = 'ABC70';
-    end
     
-    % Set parameters with correct names
-    set_param(blkLine,...
-        'Frequency', '50',...
-        'Length', num2str(len_m/1000),...
-        'Resistances', mat2str(cond.(condType).r),...
-        'Inductances', mat2str(cond.(condType).l),...
-        'Capacitances', mat2str(cond.(condType).c));
-%% --- ADD POLE BUSBAR ---
-busName = sprintf('Bus_%s', strrep(toPole,'-','_'));
-busPath = [model '/' busName];
+        % Set parameters with correct names
+    geoLine = abc_geometry(condType);
 
-if isempty(find_system(model,'SearchDepth',1,'Name',busName))
-    add_block('powerlib/Elements/Busbar', busPath, ...
-        'Position',[x+120 y+20 x+150 y+50]);
-end
 
-% Connect line output to busbar
-add_line(model, [lineBlkShort '/RConn2'], [busName '/1'], 'autorouting','on');
+set_param(blkLine, ...
+    'l', num2str(len_m/1000), ...
+    'l_unit','km', ...
+    'f', num2str(cfg.f_nom), ...
+    'gmr', num2str(geoLine.gmr*1e3), ...
+    'gmr_unit','mm', ...
+    'srad', num2str(geoLine.srad*1e3), ...
+    'srad_unit','mm', ...
+    'cablerad', num2str(geoLine.cablerad*1e3), ...
+    'cablerad_unit','mm', ...
+    'Dab', num2str(geoLine.Dab*1e3), ...
+    'Dab_unit','mm', ...
+    'epsr', num2str(geoLine.epsr), ...
+    'rho', num2str(geoLine.rho), ...
+    'Rg', num2str(geoLine.Rg));
 
     %% --- CONNECT LINE TO PREVIOUS NODE ---
     if k == 1
@@ -119,12 +127,11 @@ add_line(model, [lineBlkShort '/RConn2'], [busName '/1'], 'autorouting','on');
     lineBlkShort = strrep(lineName, [model '/'], '');
     
     if hasLoad
-        add_line(model, [busName '/1'], [loadBlk '/LConn1'], 'autorouting','on');
+        add_line(model, [lineBlkShort '/RConn2'], [loadBlk '/LConn1'], 'autorouting','on');
     end
     
     if hasPV
-        add_line(model, [busName '/1'], [pvBlk '/LConn1'], 'autorouting','on');
-
+        add_line(model, [lineBlkShort '/RConn2'], [pvBlk '/LConn1'], 'autorouting','on');
     end
 
     % Update previous node for next iteration

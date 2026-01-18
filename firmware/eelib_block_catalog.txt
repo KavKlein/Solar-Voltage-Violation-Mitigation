@@ -1,0 +1,599 @@
+ee_lib/Additional
+Components
+ee_lib/Additional
+Components/SPICE Passives
+ee_lib/Additional
+Components/SPICE Passives/Current-Controlled
+Switch
+ee_lib/Additional
+Components/SPICE Passives/SPICE Resistor
+ee_lib/Additional
+Components/SPICE Passives/Voltage-Controlled
+Switch
+ee_lib/Additional
+Components/SPICE Semiconductors
+ee_lib/Additional
+Components/SPICE Semiconductors/SPICE Diode
+ee_lib/Additional
+Components/SPICE Semiconductors/SPICE NIGBT
+ee_lib/Additional
+Components/SPICE Semiconductors/SPICE NJFET
+ee_lib/Additional
+Components/SPICE Semiconductors/SPICE NMOS
+ee_lib/Additional
+Components/SPICE Semiconductors/SPICE NPN
+ee_lib/Additional
+Components/SPICE Semiconductors/SPICE PJFET
+ee_lib/Additional
+Components/SPICE Semiconductors/SPICE PMOS
+ee_lib/Additional
+Components/SPICE Semiconductors/SPICE PNP
+ee_lib/Additional
+Components/SPICE Sources
+ee_lib/Additional
+Components/SPICE Sources/DC Current Source
+ee_lib/Additional
+Components/SPICE Sources/DC Voltage Source
+ee_lib/Additional
+Components/SPICE Sources/Exponential Current
+Source
+ee_lib/Additional
+Components/SPICE Sources/Exponential Voltage
+Source
+ee_lib/Additional
+Components/SPICE Sources/PCCCS
+ee_lib/Additional
+Components/SPICE Sources/PCCCS2
+ee_lib/Additional
+Components/SPICE Sources/PCCVS
+ee_lib/Additional
+Components/SPICE Sources/PCCVS2
+ee_lib/Additional
+Components/SPICE Sources/PVCCS
+ee_lib/Additional
+Components/SPICE Sources/PVCCS2
+ee_lib/Additional
+Components/SPICE Sources/PVCVS
+ee_lib/Additional
+Components/SPICE Sources/PVCVS2
+ee_lib/Additional
+Components/SPICE Sources/Piecewise Linear
+Current Source
+ee_lib/Additional
+Components/SPICE Sources/Piecewise Linear
+Voltage Source
+ee_lib/Additional
+Components/SPICE Sources/Pulse Current Source
+ee_lib/Additional
+Components/SPICE Sources/Pulse Voltage Source
+ee_lib/Additional
+Components/SPICE Sources/SFFM Current Source
+ee_lib/Additional
+Components/SPICE Sources/SFFM Voltage Source
+ee_lib/Additional
+Components/SPICE Sources/Sinusoidal Current
+Source
+ee_lib/Additional
+Components/SPICE Sources/Sinusoidal Voltage
+Source
+ee_lib/Connectors &
+References
+ee_lib/Connectors &
+References/Array of Electrical
+Nodes
+ee_lib/Connectors &
+References/Busbar
+ee_lib/Connectors &
+References/Busbar (DC)
+ee_lib/Connectors &
+References/Cable and Connectors
+ee_lib/Connectors &
+References/Delta Reference
+(Three-Phase)
+ee_lib/Connectors &
+References/Electrical Reference
+ee_lib/Connectors &
+References/Floating Neutral
+(Three-Phase)
+ee_lib/Connectors &
+References/Floating Reference
+ee_lib/Connectors &
+References/Grounded Neutral
+(Three-Phase)
+ee_lib/Connectors &
+References/Neutral Port
+(Three-Phase)
+ee_lib/Connectors &
+References/Open Circuit
+ee_lib/Connectors &
+References/Open Circuit
+(Three-Phase)
+ee_lib/Connectors &
+References/PS Three-Element Demux
+ee_lib/Connectors &
+References/Phase Permute
+ee_lib/Connectors &
+References/Phase Splitter
+ee_lib/Control
+ee_lib/Electromechanical
+ee_lib/Electromechanical/Asynchronous
+ee_lib/Electromechanical/Asynchronous/FEM-Parameterized
+Induction Machine
+(Squirrel Cage)
+ee_lib/Electromechanical/Asynchronous/FEM-Parameterized
+Induction Machine
+(Wound Rotor)
+ee_lib/Electromechanical/Asynchronous/Induction Machine
+(Single-Phase)
+ee_lib/Electromechanical/Asynchronous/Induction Machine
+Measurement
+ee_lib/Electromechanical/Asynchronous/Induction Machine
+Squirrel Cage
+ee_lib/Electromechanical/Asynchronous/Induction Machine
+Wound Rotor
+ee_lib/Electromechanical/Asynchronous/Simplified Induction
+Motor
+ee_lib/Electromechanical/Brushed Motors
+ee_lib/Electromechanical/Brushed Motors/Compound Motor
+ee_lib/Electromechanical/Brushed Motors/DC Motor
+ee_lib/Electromechanical/Brushed Motors/RC Servo
+ee_lib/Electromechanical/Brushed Motors/Shunt Motor
+ee_lib/Electromechanical/Brushed Motors/Universal Motor
+ee_lib/Electromechanical/Magnetic Rotor
+ee_lib/Electromechanical/Mechanical
+ee_lib/Electromechanical/Mechanical/Machine
+Inertia
+ee_lib/Electromechanical/Mechanical/Machine Mechanical
+Power
+ee_lib/Electromechanical/Mechatronic
+Actuators
+ee_lib/Electromechanical/Mechatronic
+Actuators/FEM-Parameterized
+Linear Actuator
+ee_lib/Electromechanical/Mechatronic
+Actuators/FEM-Parameterized
+Rotary Actuator
+ee_lib/Electromechanical/Mechatronic
+Actuators/Generic Linear
+Actuator
+ee_lib/Electromechanical/Mechatronic
+Actuators/Generic Rotary
+Actuator
+ee_lib/Electromechanical/Mechatronic
+Actuators/Piezo Bender
+ee_lib/Electromechanical/Mechatronic
+Actuators/Piezo Linear
+Actuator
+ee_lib/Electromechanical/Mechatronic
+Actuators/Piezo Rotary
+Actuator
+ee_lib/Electromechanical/Mechatronic
+Actuators/Piezo Stack
+ee_lib/Electromechanical/Mechatronic
+Actuators/Solenoid
+ee_lib/Electromechanical/Motor & Drive
+(System Level)
+ee_lib/Electromechanical/Permanent Magnet
+ee_lib/Electromechanical/Permanent Magnet/BLDC
+ee_lib/Electromechanical/Permanent Magnet/FEM-Parameterized
+PMSM
+ee_lib/Electromechanical/Permanent Magnet/Hybrid Excitation
+PMSM
+ee_lib/Electromechanical/Permanent Magnet/PMLSM
+ee_lib/Electromechanical/Permanent Magnet/PMSM
+ee_lib/Electromechanical/Permanent Magnet/PMSM (DQ0)
+ee_lib/Electromechanical/Permanent Magnet/PMSM (Five-Phase)
+ee_lib/Electromechanical/Permanent Magnet/PMSM (Four-Phase)
+ee_lib/Electromechanical/Permanent Magnet/PMSM (Single-Phase)
+ee_lib/Electromechanical/Permanent Magnet/PMSM (Six-Phase)
+ee_lib/Electromechanical/Reluctance & Stepper
+ee_lib/Electromechanical/Reluctance & Stepper/Stepper Motor
+ee_lib/Electromechanical/Reluctance & Stepper/Stepper Motor Driver
+ee_lib/Electromechanical/Reluctance & Stepper/Switched Reluctance
+Machine
+ee_lib/Electromechanical/Reluctance & Stepper/Switched Reluctance
+Machine
+(Multi-Phase)
+ee_lib/Electromechanical/Reluctance & Stepper/Synchronous
+Reluctance Machine
+ee_lib/Electromechanical/Reluctance & Stepper/Unipolar Stepper
+Motor
+ee_lib/Electromechanical/Reluctance & Stepper/Unipolar Stepper
+Motor Driver
+ee_lib/Electromechanical/Rotating Air Gap
+ee_lib/Electromechanical/Simplified Generator
+ee_lib/Electromechanical/Synchronous
+ee_lib/Electromechanical/Synchronous/FEM-Parameterized
+Synchronous Machine
+ee_lib/Electromechanical/Synchronous/Simplified
+Synchronous Machine
+ee_lib/Electromechanical/Synchronous/Simplified
+Synchronous Machine
+Measurement
+ee_lib/Electromechanical/Synchronous/Synchronous Machine
+(Six-Phase)
+ee_lib/Electromechanical/Synchronous/Synchronous Machine
+Field Circuit
+ee_lib/Electromechanical/Synchronous/Synchronous Machine
+GENTPJ
+ee_lib/Electromechanical/Synchronous/Synchronous Machine
+Measurement
+ee_lib/Electromechanical/Synchronous/Synchronous Machine
+Model 1.0
+ee_lib/Electromechanical/Synchronous/Synchronous Machine
+Model 2.1
+ee_lib/Electromechanical/Synchronous/Synchronous Machine
+Round Rotor
+ee_lib/Electromechanical/Synchronous/Synchronous Machine
+Salient Pole
+ee_lib/Electromechanical/Wind Turbine
+(Mechanical)
+ee_lib/Integrated Circuits
+ee_lib/Integrated Circuits/Band-Limited Op-Amp
+ee_lib/Integrated Circuits/Comparator
+ee_lib/Integrated Circuits/Controlled PWM
+Voltage
+ee_lib/Integrated Circuits/Finite-Gain Op-Amp
+ee_lib/Integrated Circuits/Fully Differential
+Op-Amp
+ee_lib/Integrated Circuits/Logic
+ee_lib/Integrated Circuits/Logic/CMOS AND
+ee_lib/Integrated Circuits/Logic/CMOS Buffer
+ee_lib/Integrated Circuits/Logic/CMOS NAND
+ee_lib/Integrated Circuits/Logic/CMOS NOR
+ee_lib/Integrated Circuits/Logic/CMOS NOT
+ee_lib/Integrated Circuits/Logic/CMOS OR
+ee_lib/Integrated Circuits/Logic/CMOS XOR
+ee_lib/Integrated Circuits/Logic/D Flip-Flop
+ee_lib/Integrated Circuits/Logic/D Latch
+ee_lib/Integrated Circuits/Logic/S-R Latch
+ee_lib/Integrated Circuits/Logic/Schmitt Trigger
+ee_lib/Integrated Circuits/Multiplier
+ee_lib/Integrated Circuits/Operational
+Transconductance
+Amplifier
+ee_lib/Integrated Circuits/Push-Pull Output
+ee_lib/Integrated Circuits/Timer
+ee_lib/Integrated Circuits/Voltage-Controlled
+Oscillator
+ee_lib/Passive
+ee_lib/Passive/Capacitor
+ee_lib/Passive/Constant Current
+Load
+ee_lib/Passive/Constant Current
+Load (Three-Phase)
+ee_lib/Passive/Constant Power Load
+ee_lib/Passive/Constant Power Load
+(Three-Phase)
+ee_lib/Passive/Crystal
+ee_lib/Passive/Diffusion Resistor
+ee_lib/Passive/Dynamic Load
+ee_lib/Passive/Dynamic Load
+(Three-Phase)
+ee_lib/Passive/Eddy Current
+ee_lib/Passive/Incandescent Lamp
+ee_lib/Passive/Inductor
+ee_lib/Passive/Lines
+ee_lib/Passive/Lines/AC Cable
+(Three-Phase)
+ee_lib/Passive/Lines/Coupled Lines
+(Three-Phase)
+ee_lib/Passive/Lines/Coupled Lines (Pair)
+ee_lib/Passive/Lines/Frequency-Dependent
+Overhead Line
+(Three-Phase)
+ee_lib/Passive/Lines/Transmission
+Line
+(Three-Phase)
+ee_lib/Passive/Lines/Transmission Line
+ee_lib/Passive/Magnetic Core
+ee_lib/Passive/Nonlinear Inductor
+ee_lib/Passive/Nonlinear Reluctance
+ee_lib/Passive/Passive Harmonic
+Filter (Three-Phase)
+ee_lib/Passive/Potentiometer
+ee_lib/Passive/RLC Assemblies
+ee_lib/Passive/RLC Assemblies/Delta-Connected
+Variable Load
+ee_lib/Passive/RLC Assemblies/Delta-Connected Load
+ee_lib/Passive/RLC Assemblies/RLC (Three-Phase)
+ee_lib/Passive/RLC Assemblies/Wye-Connected
+Variable Load
+ee_lib/Passive/RLC Assemblies/Wye-Connected
+Variable Load
+(lagging)
+ee_lib/Passive/RLC Assemblies/Wye-Connected Load
+ee_lib/Passive/Resistor
+ee_lib/Passive/S-Parameter Rational Fit
+ee_lib/Passive/Supercapacitor
+ee_lib/Passive/Thermal
+ee_lib/Passive/Thermal/Cauer Thermal Model
+ee_lib/Passive/Thermal/Foster Thermal Model
+ee_lib/Passive/Thermal/Heatsink
+ee_lib/Passive/Thermal/Thermal Resistor
+ee_lib/Passive/Transformers
+ee_lib/Passive/Transformers/Center-Tapped
+Transformer
+ee_lib/Passive/Transformers/Earthing Transformer
+ee_lib/Passive/Transformers/Mutual Inductor
+ee_lib/Passive/Transformers/Nonlinear
+Transformer
+ee_lib/Passive/Transformers/Phase-Shifting
+Transformer
+ee_lib/Passive/Transformers/Tap-Changing
+Transformer
+ee_lib/Passive/Transformers/Three-Winding
+Nonlinear
+Transformer
+ee_lib/Passive/Transformers/Three-Winding
+Transformer
+(Three-Phase)
+ee_lib/Passive/Transformers/Three-Winding Mutual
+Inductor
+ee_lib/Passive/Transformers/Two-Winding
+Transformer
+(Three-Phase)
+ee_lib/Passive/Transformers/Zigzag-Delta-Wye
+Transformer
+ee_lib/Passive/Variable Capacitor
+ee_lib/Passive/Variable Gap
+Capacitor
+ee_lib/Passive/Variable Inductor
+ee_lib/Passive/Varistor
+ee_lib/Passive/Winding
+ee_lib/Semiconductors &
+Converters
+ee_lib/Semiconductors &
+Converters/Converters
+ee_lib/Semiconductors &
+Converters/Converters/AC-DC Converter
+(Three-Phase)
+ee_lib/Semiconductors &
+Converters/Converters/Average-Value
+Chopper
+ee_lib/Semiconductors &
+Converters/Converters/Average-Value
+Inverter
+(Three-Phase)
+ee_lib/Semiconductors &
+Converters/Converters/Average-Value
+Rectifier
+(Three-Phase)
+ee_lib/Semiconductors &
+Converters/Converters/Average-Value
+Voltage Source
+Converter
+(Three-Phase)
+ee_lib/Semiconductors &
+Converters/Converters/Average-Value DC-DC
+Converter
+ee_lib/Semiconductors &
+Converters/Converters/Bidirectional DC-DC
+Converter
+ee_lib/Semiconductors &
+Converters/Converters/Boost Converter
+ee_lib/Semiconductors &
+Converters/Converters/Buck Converter
+ee_lib/Semiconductors &
+Converters/Converters/Buck-Boost Converter
+ee_lib/Semiconductors &
+Converters/Converters/Converter
+(Three-Phase)
+ee_lib/Semiconductors &
+Converters/Converters/DC-DC Converter
+ee_lib/Semiconductors &
+Converters/Converters/Eight-Pulse Gate
+Multiplexer
+ee_lib/Semiconductors &
+Converters/Converters/Four-Pulse Gate
+Multiplexer
+ee_lib/Semiconductors &
+Converters/Converters/Four-Quadrant
+Chopper
+ee_lib/Semiconductors &
+Converters/Converters/H-Bridge
+ee_lib/Semiconductors &
+Converters/Converters/Modular Multilevel
+Converter
+(Three-Phase)
+ee_lib/Semiconductors &
+Converters/Converters/Modular Multilevel
+Converter Arm
+ee_lib/Semiconductors &
+Converters/Converters/Modular Multilevel
+Converter Leg
+ee_lib/Semiconductors &
+Converters/Converters/One-Quadrant Chopper
+ee_lib/Semiconductors &
+Converters/Converters/Rectifier
+(Three-Phase)
+ee_lib/Semiconductors &
+Converters/Converters/Six-Pulse Gate
+Multiplexer
+ee_lib/Semiconductors &
+Converters/Converters/Three-Level
+Converter
+(Three-Phase)
+ee_lib/Semiconductors &
+Converters/Converters/Twelve-Pulse Gate
+Multiplexer
+ee_lib/Semiconductors &
+Converters/Converters/Two-Pulse Gate
+Multiplexer
+ee_lib/Semiconductors &
+Converters/Converters/Two-Quadrant Chopper
+ee_lib/Semiconductors &
+Converters/Current Limiter
+ee_lib/Semiconductors &
+Converters/Diode
+ee_lib/Semiconductors &
+Converters/GTO
+ee_lib/Semiconductors &
+Converters/Gate Driver
+ee_lib/Semiconductors &
+Converters/Half-Bridge (Ideal,
+Switching)
+ee_lib/Semiconductors &
+Converters/Half-Bridge Driver
+ee_lib/Semiconductors &
+Converters/IGBT
+(Ideal,
+Switching)
+ee_lib/Semiconductors &
+Converters/Ideal Semiconductor
+Switch
+ee_lib/Semiconductors &
+Converters/MOSFET
+(Ideal,
+Switching)
+ee_lib/Semiconductors &
+Converters/N-Channel IGBT
+ee_lib/Semiconductors &
+Converters/N-Channel JFET
+ee_lib/Semiconductors &
+Converters/N-Channel LDMOS FET
+ee_lib/Semiconductors &
+Converters/N-Channel MOSFET
+ee_lib/Semiconductors &
+Converters/NMOS Capacitor
+ee_lib/Semiconductors &
+Converters/NPN Bipolar
+Transistor
+ee_lib/Semiconductors &
+Converters/Optocoupler
+ee_lib/Semiconductors &
+Converters/P-Channel JFET
+ee_lib/Semiconductors &
+Converters/P-Channel LDMOS FET
+ee_lib/Semiconductors &
+Converters/P-Channel MOSFET
+ee_lib/Semiconductors &
+Converters/PMOS Capacitor
+ee_lib/Semiconductors &
+Converters/PNP Bipolar
+Transistor
+ee_lib/Semiconductors &
+Converters/SPICE-Imported MOSFET
+ee_lib/Semiconductors &
+Converters/Thyristor
+ee_lib/Semiconductors &
+Converters/Thyristor
+(Piecewise
+Linear)
+ee_lib/Sensors &
+Transducers
+ee_lib/Sensors &
+Transducers/Accelerometer
+ee_lib/Sensors &
+Transducers/Current Sensor
+ee_lib/Sensors &
+Transducers/Current Sensor
+(Three-Phase)
+ee_lib/Sensors &
+Transducers/Current and Voltage
+Sensor (Three-Phase)
+ee_lib/Sensors &
+Transducers/Gyro
+ee_lib/Sensors &
+Transducers/Hall-Effect Rotary
+Encoder
+ee_lib/Sensors &
+Transducers/Incremental Shaft
+Encoder
+ee_lib/Sensors &
+Transducers/Inductive Rotor
+Position Sensor
+ee_lib/Sensors &
+Transducers/Light-Emitting Diode
+ee_lib/Sensors &
+Transducers/Line Voltage Sensor
+(Three-Phase)
+ee_lib/Sensors &
+Transducers/PS Sensor
+ee_lib/Sensors &
+Transducers/PTC Thermistor
+ee_lib/Sensors &
+Transducers/Peltier Device
+ee_lib/Sensors &
+Transducers/Phase Voltage Sensor
+(Three-Phase)
+ee_lib/Sensors &
+Transducers/Photodiode
+ee_lib/Sensors &
+Transducers/Power Sensor
+ee_lib/Sensors &
+Transducers/Power Sensor
+(Three-Phase)
+ee_lib/Sensors &
+Transducers/Pressure Transducer
+ee_lib/Sensors &
+Transducers/Proximity Sensor
+ee_lib/Sensors &
+Transducers/Resolver
+ee_lib/Sensors &
+Transducers/Strain Gauge
+ee_lib/Sensors &
+Transducers/Thermistor
+ee_lib/Sensors &
+Transducers/Thermocouple
+ee_lib/Sensors &
+Transducers/Voltage Sensor
+ee_lib/Sources
+ee_lib/Sources/Battery
+ee_lib/Sources/Battery
+(Table-Based)
+ee_lib/Sources/Controlled Current
+Source
+(Three-Phase)
+ee_lib/Sources/Controlled Voltage
+Source
+(Three-Phase)
+ee_lib/Sources/Current
+Source
+(Three-Phase)
+ee_lib/Sources/Current Source
+ee_lib/Sources/Electrolyzer
+ee_lib/Sources/Fuel Cell
+ee_lib/Sources/Load Flow Source
+ee_lib/Sources/Negative Supply Rail
+ee_lib/Sources/Piecewise Linear Current Source
+ee_lib/Sources/Piecewise Linear Voltage Source
+ee_lib/Sources/Positive Supply Rail
+ee_lib/Sources/Programmable Voltage
+Source
+ee_lib/Sources/Programmable Voltage
+Source
+(Three-Phase)
+ee_lib/Sources/Pulse Current Source
+ee_lib/Sources/Pulse Voltage Source
+ee_lib/Sources/Solar Cell
+ee_lib/Sources/Voltage
+Source
+(Three-Phase)
+ee_lib/Sources/Voltage Source
+ee_lib/Specialized Power
+Systems
+ee_lib/Switches & Breakers
+ee_lib/Switches & Breakers/Circuit Breaker
+ee_lib/Switches & Breakers/Circuit Breaker
+(Three-Phase)
+ee_lib/Switches & Breakers/Circuit Breaker
+(with arc)
+ee_lib/Switches & Breakers/DPDT Switch
+ee_lib/Switches & Breakers/DPST Switch
+ee_lib/Switches & Breakers/Fuse
+ee_lib/Switches & Breakers/Relays
+ee_lib/Switches & Breakers/Relays/SPDT Relay
+ee_lib/Switches & Breakers/Relays/SPST Relay
+ee_lib/Switches & Breakers/SPDT Switch
+ee_lib/Switches & Breakers/SPDT Switch
+(Three-Phase)
+ee_lib/Switches & Breakers/SPMT Switch
+ee_lib/Switches & Breakers/SPST Switch
+ee_lib/Switches & Breakers/SPST Switch
+(Three-Phase)
+ee_lib/Utilities
+ee_lib/Utilities/Environment
+Parameters
+ee_lib/Utilities/Fault
+ee_lib/Utilities/Fault (Three-Phase)

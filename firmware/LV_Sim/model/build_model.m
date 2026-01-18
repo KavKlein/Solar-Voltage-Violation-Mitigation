@@ -1,7 +1,7 @@
 function build_model(modelName, net, cfg, loadTable, solarTable)
 
 % Get conductor library
-cond = conductor_library();
+%geo = abc_geometry();
 
 % Powergui (required for power system simulation)
 blkPowerGui = [modelName '/powergui'];
@@ -16,12 +16,12 @@ set_param(blkPowerGui, ...
 % Transformer
 add_transformer(modelName, cfg);
 
-% Add a ground at transformer secondary
+% Add ground at transformer secondary
 blkGnd = [modelName '/Ground'];
-add_block('powerlib/Elements/Ground', blkGnd, ...
+add_block('sps_lib/Utilities/Ground', blkGnd, ...
     'Position',[350 280 370 300]);
 
-% Connect ground to transformer neutral
+% Connect ground to transformer neutral (no explicit busbar needed)
 add_line(modelName, 'Transformer/RConn2', 'Ground/LConn1', 'autorouting', 'on');
 
 % Feeders
@@ -31,19 +31,21 @@ x0 = 400;
 y0 = 150;
 
 for f = 1:numel(feeders)
-    % Filter segments by feeder name
+
     fd = net.segments(strcmp(net.segments.Feeder, feeders{f}), :);
 
-    % Pass the filtered table directly
     add_feeder( ...
         modelName, ...
         fd, ...
         cfg, ...
-        cond, ...
+        geo, ...              % <-- REQUIRED
         loadTable, ...
         solarTable, ...
         x0, ...
-        y0 + 400*(f-1));
+        y0 + 400*(f-1) ...
+    );
+
 end
+
 
 end
