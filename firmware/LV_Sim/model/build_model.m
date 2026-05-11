@@ -1,7 +1,7 @@
 function build_model(modelName, net, cfg, loadTable, solarTable)
 
 % Get conductor library
-%geo = abc_geometry();
+geo = abc_geometry(type);
 
 % Powergui (required for power system simulation)
 blkPowerGui = [modelName '/powergui'];
